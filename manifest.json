@@ -4,13 +4,14 @@
 	"description": "Aplicativo utilizado para controle de banco de horas.",
 	"version": "2.0.1",
 
+	"content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'",
 	"options_ui": {
 		// Required.
 		"page": "options.html",
 		// Recommended.
 		"chrome_style": true
 	},
-	"browser_action":{
+	"browser_action": {
 		"default_popup": "popup.html"
 	},
 	"icons": {
@@ -36,7 +37,7 @@
 		"res/icon_128.png"
 	],
 	"background": {
-		"scripts":[
+		"scripts": [
 			"libs/jquery-1.9.0.min.js",
 			"js/notification.js",
 			"libs/jquery.json-2.3.min.js",
@@ -51,17 +52,17 @@
 			"js/bg/background.js"
 		]
 	},
-	"content_scripts": [
-		{
-			"matches": [
-				"*://*.convenia.com.br/painel/funcionario/ponto/ver/*"
-			],
-			"js": [
-				"libs/jquery-1.9.0.min.js",
-				"libs/jquery.json-2.3.min.js",
-				"js/hrs.convenia.js"
-			],
-			"persistent": false
-		}
-	]
+	"content_scripts": [{
+		"matches": [
+			"*://*.convenia.com.br/painel/funcionario/ponto/ver/*",
+			"https://*/*",
+			"http://*/*"
+		],
+		"js": [
+			"libs/jquery-1.9.0.min.js",
+			"libs/jquery.json-2.3.min.js",
+			"js/hrs.convenia.js"
+		],
+		"persistent": false
+	}]
 }
