@@ -8,9 +8,9 @@
     <title>Dashboard</title>
 </head>
 
-<body>
+<body id="home">
 
-    
+
     ID:
     <input type="text" id="iduser">
     <br/> Nome:
@@ -20,9 +20,22 @@
     <br/>
     <button id="saveTest">Salvar</button>
 
+        TESTE
+    <table id="tableUser">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
 
     <script src="libs/firebase.js"></script>
     <script src="js/dash/fire.js"></script>
+    <script src="libs/vue.js"></script>
 </body>
 
 </html>

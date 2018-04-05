@@ -161,6 +161,24 @@ hrs.ui.main = (function($, helpers, dao){
 		$("#link-export").click(function(){
 			$("#output-export").val(dao.exportData())[0].select();
 		});
+		$("#SalvarOnline").click(function(){
+			chrome.storage.sync.set({ "dataPonto" : localStorage }, function() {
+				if (chrome.runtime.error) {
+				  console.log("Erro Salvar online");
+				} else{
+					console.log('salvo.');
+				}
+			  });
+		});
+
+		$("#RestaurarOnline").click(function(){
+			chrome.storage.sync.get("dataPonto", function(data) {
+				if (!chrome.runtime.error) {
+				  console.log(data.dataPonto);
+				  localStorage = data.dataPonto;
+				}
+			  });
+		});
 
 		$("#output-export").click(function(){
 			this.select();

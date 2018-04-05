@@ -4,7 +4,7 @@
 <head>
 	<title>Controle de ponto</title>
 	<meta charset="utf-8">
-	
+
 	<link rel="stylesheet" type="text/css" href="css/oocss.css" />
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
 	<link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
@@ -26,262 +26,317 @@
 
 <body>
 
-<div id="wrapper">
+	<div id="wrapper">
 
-	<div id="fixed-bar">
-		<ul id="header">
-			<li class="date">Dia</li>
-			<li class="begin-day">Entrada</li>
-			<li class="start-lunch">Ida almoço</li>
-			<li class="end-lunch">Volta almoço</li>
-			<li class="end-day">Saída</li>
-			<li class="vpn-cell">Remoto</li>
-			<li class="all-worked">Total</li>
-			<li class="lunch">almoço</li>
-			<li class="extra">Extra</li>
-			<li class="note">Obs</li>
-			<li class="is-ausent">Ausente</li>
-		</ul>
+		<div id="fixed-bar">
+			<ul id="header">
+				<li class="date">Dia</li>
+				<li class="begin-day">Entrada</li>
+				<li class="start-lunch">Ida almoço</li>
+				<li class="end-lunch">Volta almoço</li>
+				<li class="end-day">Saída</li>
+				<li class="vpn-cell">Remoto</li>
+				<li class="all-worked">Total</li>
+				<li class="lunch">almoço</li>
+				<li class="extra">Extra</li>
+				<li class="note">Obs</li>
+				<li class="is-ausent">Ausente</li>
+			</ul>
 
-		<ul id="menu">
-			<li> <a href="#export-pdf" class="export-pdf">Imp</a> </li>
-			<li> <a href="#export-pdf" class="export-pdf">PDF</a> </li>
-			<li> <a href="#configuration" class="open-lightbox">Configurações</a> </li>
-			<li> <a href="#holidays" class="open-lightbox">Feriados</a> </li>
-			<li> <a href="#export" id="link-export" class="open-lightbox">Exportar</a> </li>
-			<li> <a href="#import-data" id="import-data" class="last">Importar</a> </li>
-		</ul>
-	</div>
-
-	<div class="rightCol general-information">
-		<h2>Importação do sistema</h2>
-
-		<div class="line">
-			<div class="unit">Importe os dados do sistema <a href="https://rh.convenia.com.br/" class="convenia-link">convenia</a></div>
-			<div class="unit ">Abra a pagina do relatório do convenia e click no botão verde "Importar dados para CP"</div>
-			<div class="last-line"><img src="res/img/logo-convenia-220.png" alt="convenia logo "></div>
-		</div>
-		<h2>Informações consolidadas</h2>
-
-		<div class="line last-line">
-			<div class="unit label">Horas extras: </div>
-			<div id="extra" class="unit information"></div>
-		</div>
-
-
-		<h2>Informações do mês</h2>
-
-		<div class="line">
-			<div class="unit label">Mês: </div>
-			<div class="unit information small" id="month-name"></div>
-		</div>
-
-		<div class="line">
-			<div class="unit label">Horas extras: </div>
-			<div class="unit information small" id="extra-month"></div>
-		</div>
-
-		<div class="line last-line month-buttons">
-			<div class="unit size1of2">
-				<input type="button" class="" value="Mês anterior" id="prev-month" />
-			</div>
-
-			<div class="lastUnit size1of2">
-				<input type="button" value="Próximo Mês" id="next-month" />
-			</div>
-		</div>
-		
-		<div id="legend">
-			<h2>Legenda</h2>
-			
-			<div class="last-line">
-				<table id="legend-table">
-					<tr>
-						<td class="color">
-							<div class="commom_day"></div>
-						</td>
-						<td>Dia comum</td>
-					</tr>
-					<tr>
-						<td class="weekend color">
-							<div class="weekend"></div>
-						</td>
-						<td>Final de semana</td>
-					</tr>
-					<tr>
-						<td class="holiday color"></td>
-						<td>Feriado</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-
-		<div id="aditional-information">
-			<h2>Informações adicionais</h2>
-
-			<div class="line">
-				<div class="unit label">Horário médio de entrada: </div> 
-				<div class="unit information small" id="entrance-avg"></div>
-			</div>
-
-			<div class="line">
-				<div class="unit label">Horário médio de Saída: </div> 
-				<div class="unit information small" id="exit-avg"></div>
-			</div>
-
-			<div class="line" id="positive-days">
-				<div class="unit label">Qtde. de dias que você pode tirar: </div> 
-				<div class="unit information small" id="days-off"></div>
-			</div>
-
-			<div class="line hide" id="negative-days">
-				<div class="unit label">Qtde. de dias que você está devendo: </div> 
-				<div class="unit information small negative-hours" id="days-to-pay"></div>
-			</div>
-
-			<div class="line last-line">
-				<div class="unit label">Qtde. de dias que você se ausentou: </div> 
-				<div class="unit information small" id="ausent-days"></div>
-			</div>
-		</div>
-	</div>
-
-	<div class="leftCol main-info">
-		<table id="main-table">
-			<tr id="printable-header" class="fixed-row">
-				<th colspan="2">Dia</th>
-				<th>Entrada</th>
-				<th>Ida almoço</th>
-				<th>Volta almoço</th>
-				<th>Saída</th>
-				<th>Remoto</th>
-				<th>Total</th>
-				<th>Almoço</th>
-				<th>Extra</th>
-				<th>Obs</th>
-				<th class="is-ausent">Ausente</th>
-			</tr>
-			<tr id="row-template" class="fixed-row">
-				<td class="day_date">{data}</td>
-				<td class="day_week">{diaSemana}</td>
-				<td class="begin-day"><input type="text" value="{entrada}" class="start" /></td>
-				<td class="start-lunch"><input type="text" value="{ida_almoco}" class="lunch-start" /></td>
-				<td class="end-lunch"><input type="text" value="{volta_almoco}" class="lunch-end" /></td>
-				<td class="end-day"><input type="text" value="{saida}" class="end" placeholder="{expectedExit}" /></td>
-				<td class="vpn-cell"><input type="text" value="{vpn}" class="vpn" /></td>
-				<td class="total all-worked">{total}</td>
-				<td class="almoco lunch">{almoco}</td>
-				<td class="excedente extra">{excedente}</td>
-				<td class="obs_cell note">
-					<div class="obs">{obs}</div>
-					<a href="#view-full-obs" class="view-full-obs {cssObsPreenchida}" title="{obs}"></a>
-				</td>
-				<td class="is-ausent"><input type="checkbox" value="S" class="ausent" {checked} /></td>
-			</tr>
-		</table>
-		<div id="box-obs">
-			<a href="#close" class="close-obs">x</a>
-			<textarea class="obs">{obs}</textarea>
-		</div>
-
-	</div>
-
-	<input type="file" id="inputfile-import-data" name="arquivos" />
-
-	<div id="configuration" class="lightbox">
-		<a href="#close" class="close close-button">x</a>
-		
-		<h2>Configurações</h2>
-		
-		<div class="line">
-			<label class="unit size1of3">Carga de trabalho di�ria: </label> 
-			<input type="number" step="0.01" min="0" id="total-work" class="size2of3 lastUnit" />
-		</div>
-		<div class="line"> 
-			<label class="unit size1of3">Tempo de almoço padrão: </label> 
-			<input type="number" min="0" step="0.25" id="lunch-time" class="size2of3 lastUnit" />
-		</div>
-		<div class="line"> 
-			<label class="unit size1of3">Saldo de horas inicial: </label> 
-			<input type="number" min="0" step="0.1" id="initial-balance" class="size2of3 lastUnit" />
-		</div>
-
-		<div class="line utilDays"
-			<label class="unit size1of3">Dias com expediente: </label>
-
-			<ul>
-				<li><label><input type="checkbox" class="utilDay" value="0" /> Domingo</label></li>
-				<li><label><input type="checkbox" class="utilDay" value="1" /> Segunda-feira </label></li>
-				<li><label><input type="checkbox" class="utilDay" value="2" /> Terça-feira </label></li>
-				<li><label><input type="checkbox" class="utilDay" value="3" /> Quarta-feira </label></li>
-				<li><label><input type="checkbox" class="utilDay" value="4" /> Quinta-feira </label></li>
-				<li><label><input type="checkbox" class="utilDay" value="5" /> Sexta-feira </label></li>
-				<li><label><input type="checkbox" class="utilDay" value="6" /> Sábado </label></li>
+			<ul id="menu">
+				<li>
+					<a href="#export-pdf" class="export-pdf">Imp</a>
+				</li>
+				<li>
+					<a href="#export-pdf" class="export-pdf">PDF</a>
+				</li>
+				<li>
+					<a href="#configuration" class="open-lightbox">Configurações</a>
+				</li>
+				<li>
+					<a href="#holidays" class="open-lightbox">Feriados</a>
+				</li>
+				<li>
+					<a href="#export" id="link-export" class="open-lightbox">Exportar</a>
+				</li>
+				<li>
+					<a href="#import-data" id="import-data" class="last">Importar</a>
+				</li>
 			</ul>
 		</div>
 
-		<div class="center">
-			<input type="button" class="close" value="Fechar" />
-		</div>
-	</div>
+		<div class="rightCol general-information">
+			<h2>Importação do sistema</h2>
 
-	<div id="convenia-modal" class="lightbox">
-		<a href="#close" class="close close-button">x</a>
-		<div id="convenia-panel">
-			<h2>Importação do convênia</h2>
-			<input type="text" class="url_convenia cp-input" placeholder="Insira a url do fechamento do convenia"/>
-			<button class="btn import-data">Importar dados</button>
-		</div>
-	</div>
+			<div class="line">
+				<div class="unit">Importe os dados do sistema
+					<a href="https://rh.convenia.com.br/" class="convenia-link">convenia</a>
+				</div>
+				<div class="unit ">Abra a pagina do relatório do convenia e click no botão verde "Importar dados para CP"</div>
+				<div class="last-line">
+					<img src="res/img/logo-convenia-220.png" alt="convenia logo ">
+				</div>
+			</div>
+			<h2>Informações consolidadas</h2>
 
-	<div id="holidays" class="lightbox">
-		<h2>Editar feriados</h2>
-		<a href="#close" class="close close-button">x</a>
-		<div id="holidays-list-container">
-			<table id="holidays-list">
-				<tr>
-					<th>Data</th>
-					<th>Descrição</th>
+			<div class="line last-line">
+				<div class="unit label">Horas extras: </div>
+				<div id="extra" class="unit information"></div>
+			</div>
+
+
+			<h2>Informações do mês</h2>
+
+			<div class="line">
+				<div class="unit label">Mês: </div>
+				<div class="unit information small" id="month-name"></div>
+			</div>
+
+			<div class="line">
+				<div class="unit label">Horas extras: </div>
+				<div class="unit information small" id="extra-month"></div>
+			</div>
+
+			<div class="line last-line month-buttons">
+				<div class="unit size1of2">
+					<input type="button" class="" value="Mês anterior" id="prev-month" />
+				</div>
+
+				<div class="lastUnit size1of2">
+					<input type="button" value="Próximo Mês" id="next-month" />
+				</div>
+			</div>
+
+			<div id="legend">
+				<h2>Legenda</h2>
+
+				<div class="last-line">
+					<table id="legend-table">
+						<tr>
+							<td class="color">
+								<div class="commom_day"></div>
+							</td>
+							<td>Dia comum</td>
+						</tr>
+						<tr>
+							<td class="weekend color">
+								<div class="weekend"></div>
+							</td>
+							<td>Final de semana</td>
+						</tr>
+						<tr>
+							<td class="holiday color"></td>
+							<td>Feriado</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div id="aditional-information">
+				<h2>Informações adicionais</h2>
+
+				<div class="line">
+					<div class="unit label">Horário médio de entrada: </div>
+					<div class="unit information small" id="entrance-avg"></div>
+				</div>
+
+				<div class="line">
+					<div class="unit label">Horário médio de Saída: </div>
+					<div class="unit information small" id="exit-avg"></div>
+				</div>
+
+				<div class="line" id="positive-days">
+					<div class="unit label">Qtde. de dias que você pode tirar: </div>
+					<div class="unit information small" id="days-off"></div>
+				</div>
+
+				<div class="line hide" id="negative-days">
+					<div class="unit label">Qtde. de dias que você está devendo: </div>
+					<div class="unit information small negative-hours" id="days-to-pay"></div>
+				</div>
+
+				<div class="line last-line">
+					<div class="unit label">Qtde. de dias que você se ausentou: </div>
+					<div class="unit information small" id="ausent-days"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="leftCol main-info">
+			<table id="main-table">
+				<tr id="printable-header" class="fixed-row">
+					<th colspan="2">Dia</th>
+					<th>Entrada</th>
+					<th>Ida almoço</th>
+					<th>Volta almoço</th>
+					<th>Saída</th>
+					<th>Remoto</th>
+					<th>Total</th>
+					<th>Almoço</th>
+					<th>Extra</th>
+					<th>Obs</th>
+					<th class="is-ausent">Ausente</th>
 				</tr>
-				<tr id="holiday_template">
-					<td><input type="text" class="holiday_date" /></td>
-					<td><input type="text" class="holiday_description" /></td>
+				<tr id="row-template" class="fixed-row">
+					<td class="day_date">{data}</td>
+					<td class="day_week">{diaSemana}</td>
+					<td class="begin-day">
+						<input type="text" value="{entrada}" class="start" />
+					</td>
+					<td class="start-lunch">
+						<input type="text" value="{ida_almoco}" class="lunch-start" />
+					</td>
+					<td class="end-lunch">
+						<input type="text" value="{volta_almoco}" class="lunch-end" />
+					</td>
+					<td class="end-day">
+						<input type="text" value="{saida}" class="end" placeholder="{expectedExit}" />
+					</td>
+					<td class="vpn-cell">
+						<input type="text" value="{vpn}" class="vpn" />
+					</td>
+					<td class="total all-worked">{total}</td>
+					<td class="almoco lunch">{almoco}</td>
+					<td class="excedente extra">{excedente}</td>
+					<td class="obs_cell note">
+						<div class="obs">{obs}</div>
+						<a href="#view-full-obs" class="view-full-obs {cssObsPreenchida}" title="{obs}"></a>
+					</td>
+					<td class="is-ausent">
+						<input type="checkbox" value="S" class="ausent" {checked} />
+					</td>
 				</tr>
 			</table>
-		</div>
-		
-		<div class="center">
-			<input type="button" class="close center" value="Fechar" />
-		</div>
-	</div>
-	
-	<div id="export" class="lightbox">
-		<h2>Exportar dados</h2>
-		<a href="#close" class="close close-button">x</a>
-		
-		Salve o conteúdo abaixo em um arquivo, que pode ser reimportado novamente.
-		
-		<textarea id="output-export"></textarea>
+			<div id="box-obs">
+				<a href="#close" class="close-obs">x</a>
+				<textarea class="obs">{obs}</textarea>
+			</div>
 
-	</div>
-	
-	<div id="confirm-import" class="lightbox">
-		<h2>Importar dados</h2>
-		<a href="#close" class="close close-button">x</a>
-		
-		Deseja sobreescrever suas Informações pelas Informações do arquivo a ser importado?
-		
-		<div class="center">
-			<input type="button" id="proced-import" class="close center" value="Confirmar" />
-			<input type="button" class="close center" value="Cancelar" />
 		</div>
-	</div> 
 
-	<ul id="input-context-menu" class="context-menu">
-		<li id="insert-current-time">Inserir hora atual</li>
-		<li>Cancelar</li>
-	</ul>
-</div>
+		<input type="file" id="inputfile-import-data" name="arquivos" />
+
+		<div id="configuration" class="lightbox">
+			<a href="#close" class="close close-button">x</a>
+
+			<h2>Configurações</h2>
+
+			<div class="line">
+				<label class="unit size1of3">Carga de trabalho di�ria: </label>
+				<input type="number" step="0.01" min="0" id="total-work" class="size2of3 lastUnit" />
+			</div>
+			<div class="line">
+				<label class="unit size1of3">Tempo de almoço padrão: </label>
+				<input type="number" min="0" step="0.25" id="lunch-time" class="size2of3 lastUnit" />
+			</div>
+			<div class="line">
+				<label class="unit size1of3">Saldo de horas inicial: </label>
+				<input type="number" min="0" step="0.1" id="initial-balance" class="size2of3 lastUnit" />
+			</div>
+
+			<div class="line utilDays" <label class="unit size1of3">Dias com expediente: </label>
+
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" class="utilDay" value="0" /> Domingo</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" class="utilDay" value="1" /> Segunda-feira </label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" class="utilDay" value="2" /> Terça-feira </label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" class="utilDay" value="3" /> Quarta-feira </label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" class="utilDay" value="4" /> Quinta-feira </label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" class="utilDay" value="5" /> Sexta-feira </label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" class="utilDay" value="6" /> Sábado </label>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<button id="SalvarOnline">Salvar Online</button>
+				<button id="RestaurarOnline">Restaurar Online</button>
+			</div>
+			<div class="center">
+				<input type="button" class="close" value="Fechar" />
+			</div>
+		</div>
+
+		<div id="convenia-modal" class="lightbox">
+			<a href="#close" class="close close-button">x</a>
+			<div id="convenia-panel">
+				<h2>Importação do convênia</h2>
+				<input type="text" class="url_convenia cp-input" placeholder="Insira a url do fechamento do convenia" />
+				<button class="btn import-data">Importar dados</button>
+			</div>
+		</div>
+
+		<div id="holidays" class="lightbox">
+			<h2>Editar feriados</h2>
+			<a href="#close" class="close close-button">x</a>
+			<div id="holidays-list-container">
+				<table id="holidays-list">
+					<tr>
+						<th>Data</th>
+						<th>Descrição</th>
+					</tr>
+					<tr id="holiday_template">
+						<td>
+							<input type="text" class="holiday_date" />
+						</td>
+						<td>
+							<input type="text" class="holiday_description" />
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="center">
+				<input type="button" class="close center" value="Fechar" />
+			</div>
+		</div>
+
+		<div id="export" class="lightbox">
+			<h2>Exportar dados</h2>
+			<a href="#close" class="close close-button">x</a>
+
+			Salve o conteúdo abaixo em um arquivo, que pode ser reimportado novamente.
+
+			<textarea id="output-export"></textarea>
+
+		</div>
+
+		<div id="confirm-import" class="lightbox">
+			<h2>Importar dados</h2>
+			<a href="#close" class="close close-button">x</a>
+
+			Deseja sobreescrever suas Informações pelas Informações do arquivo a ser importado?
+
+			<div class="center">
+				<input type="button" id="proced-import" class="close center" value="Confirmar" />
+				<input type="button" class="close center" value="Cancelar" />
+			</div>
+		</div>
+
+		<ul id="input-context-menu" class="context-menu">
+			<li id="insert-current-time">Inserir hora atual</li>
+			<li>Cancelar</li>
+		</ul>
+	</div>
 
 </body>
 
